@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - SneakerZone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/checkout.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="../index.html">SneakerZone</a>
+                </div>
+                <nav>
+                    <ul id="menuItems">
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon">
+                    <a href="cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+                <div class="menu-icon" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Checkout Section -->
+    <section class="checkout-section">
+        <div class="container">
+            <h1 class="section-title">Checkout</h1>
+
+            <!-- Checkout Progress -->
+            <div class="checkout-progress">
+                <div class="progress-step active" id="step-1">
+                    <div class="step-number">1</div>
+                    <div class="step-text">Order Summary</div>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" id="step-2">
+                    <div class="step-number">2</div>
+                    <div class="step-text">Customer Details</div>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" id="step-3">
+                    <div class="step-number">3</div>
+                    <div class="step-text">Payment</div>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" id="step-4">
+                    <div class="step-number">4</div>
+                    <div class="step-text">Confirmation</div>
+                </div>
+            </div>
+
+            <!-- Checkout Content -->
+            <div class="checkout-content">
+                <!-- Step 1: Order Summary -->
+                <div class="checkout-step active" id="order-summary">
+                    <h2>Order Summary</h2>
+                    <div class="order-items" id="checkout-items">
+                        <!-- Order items will be loaded here with JavaScript -->
+                    </div>
+                    <div class="order-summary">
+                        <div class="summary-row">
+                            <span>Subtotal:</span>
+                            <span id="checkout-subtotal">₹0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping:</span>
+                            <span id="checkout-shipping">₹0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Tax (18% GST):</span>
+                            <span id="checkout-tax">₹0.00</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total:</span>
+                            <span id="checkout-total">₹0.00</span>
+                        </div>
+                    </div>
+                    <div class="checkout-actions">
+                        <a href="cart.html" class="btn secondary-btn">Back to Cart</a>
+                        <button class="btn primary-btn" id="to-customer-details">Continue to Customer Details</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Customer Details -->
+                <div class="checkout-step" id="customer-details">
+                    <h2>Customer Details</h2>
+                    <form id="customer-form">
+                        <div class="form-group">
+                            <label for="fullname">Full Name</label>
+                            <input type="text" id="fullname" name="fullname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Delivery Address</label>
+                            <textarea id="address" name="address" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" name="city" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <input type="text" id="state" name="state" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="pincode">Pincode</label>
+                                <input type="text" id="pincode" name="pincode" required>
+                            </div>
+                        </div>
+                        <div class="checkout-actions">
+                            <button type="button" class="btn secondary-btn" id="back-to-summary">Back</button>
+                            <button type="button" class="btn primary-btn" id="to-payment">Continue to Payment</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Step 3: Payment -->
+                <div class="checkout-step" id="payment-method">
+                    <h2>Payment Method</h2>
+                    <p class="payment-intro">Choose your preferred payment method</p>
+                    <form id="payment-form">
+                        <div class="payment-options">
+                            <div class="payment-option" id="upi-option">
+                                <div class="payment-option-header">
+                                    <div class="payment-radio">
+                                        <input type="radio" id="upi" name="payment-method" value="upi" checked>
+                                        <label for="upi">UPI Payment</label>
+                                    </div>
+                                    <div class="payment-icons">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/UPI-Logo-vector.svg/1200px-UPI-Logo-vector.svg.png" alt="UPI" class="payment-icon">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Google_Pay_Logo.svg/1200px-Google_Pay_Logo.svg.png" alt="Google Pay" class="payment-icon">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Paytm_Logo_%28standalone%29.svg/1200px-Paytm_Logo_%28standalone%29.svg.png" alt="Paytm" class="payment-icon">
+                                    </div>
+                                </div>
+                                <div class="payment-details" id="upi-details">
+                                    <div class="form-group">
+                                        <label for="upi-id">UPI ID</label>
+                                        <div class="input-with-icon">
+                                            <i class="fas fa-at"></i>
+                                            <input type="text" id="upi-id" name="upi-id" placeholder="yourname@upi">
+                                        </div>
+                                        <p class="input-help">Enter your UPI ID (e.g., yourname@okicici, yourname@ybl)</p>
+                                    </div>
+                                    <div class="payment-security">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <span>Your payment information is secure and encrypted</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="payment-option" id="card-option">
+                                <div class="payment-option-header">
+                                    <div class="payment-radio">
+                                        <input type="radio" id="card" name="payment-method" value="card">
+                                        <label for="card">Credit/Debit Card</label>
+                                    </div>
+                                    <div class="payment-icons">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Mastercard_2019_logo.svg/1200px-Mastercard_2019_logo.svg.png" alt="Mastercard" class="payment-icon">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/1200px-Visa_Inc._logo.svg.png" alt="Visa" class="payment-icon">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/American_Express_logo_%282018%29.svg/1200px-American_Express_logo_%282018%29.svg.png" alt="American Express" class="payment-icon">
+                                    </div>
+                                </div>
+                                <div class="payment-details" id="card-details">
+                                    <div class="form-group">
+                                        <label for="card-number">Card Number</label>
+                                        <div class="input-with-icon">
+                                            <i class="far fa-credit-card"></i>
+                                            <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="expiry">Expiry Date</label>
+                                            <div class="input-with-icon">
+                                                <i class="far fa-calendar-alt"></i>
+                                                <input type="text" id="expiry" name="expiry" placeholder="MM/YY">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cvv">CVV</label>
+                                            <div class="input-with-icon">
+                                                <i class="fas fa-lock"></i>
+                                                <input type="text" id="cvv" name="cvv" placeholder="123">
+                                            </div>
+                                            <p class="input-help">3 or 4 digits on the back of your card</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="card-name">Name on Card</label>
+                                        <div class="input-with-icon">
+                                            <i class="far fa-user"></i>
+                                            <input type="text" id="card-name" name="card-name" placeholder="John Doe">
+                                        </div>
+                                    </div>
+                                    <div class="payment-security">
+                                        <i class="fas fa-lock"></i>
+                                        <span>Your card details are secure and encrypted with 256-bit SSL</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="payment-option" id="cod-option">
+                                <div class="payment-option-header">
+                                    <div class="payment-radio">
+                                        <input type="radio" id="cod" name="payment-method" value="cod">
+                                        <label for="cod">Cash on Delivery</label>
+                                    </div>
+                                    <div class="payment-icons">
+                                        <i class="fas fa-money-bill-wave payment-icon-large"></i>
+                                    </div>
+                                </div>
+                                <div class="payment-details" id="cod-details">
+                                    <div class="cod-info">
+                                        <div class="cod-icon">
+                                            <i class="fas fa-truck"></i>
+                                        </div>
+                                        <div class="cod-text">
+                                            <p>Pay with cash upon delivery. A convenience fee of ₹50 will be added to your total.</p>
+                                            <p>Our delivery partner will carry a POS machine for card payments as well.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="checkout-actions">
+                            <button type="button" class="btn secondary-btn" id="back-to-details">Back</button>
+                            <button type="button" class="btn primary-btn" id="place-order">Place Order</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Step 4: Confirmation -->
+                <div class="checkout-step" id="order-confirmation">
+                    <div class="confirmation-content">
+                        <div class="confirmation-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h2>Order Confirmed!</h2>
+                        <p>Your order has been placed successfully.</p>
+                        <div class="order-info">
+                            <div class="info-row">
+                                <span>Order Number:</span>
+                                <span id="order-number"></span>
+                            </div>
+                            <div class="info-row">
+                                <span>Order Date:</span>
+                                <span id="order-date"></span>
+                            </div>
+                            <div class="info-row">
+                                <span>Payment Method:</span>
+                                <span id="order-payment-method"></span>
+                            </div>
+                            <div class="info-row">
+                                <span>Total Amount:</span>
+                                <span id="order-total"></span>
+                            </div>
+                        </div>
+                        <div class="confirmation-actions">
+                            <button class="btn secondary-btn" id="download-bill">
+                                <i class="fas fa-download"></i> Download Bill
+                            </button>
+                            <a href="../index.html" class="btn primary-btn">Continue Shopping</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section about">
+                    <h3>SneakerZone</h3>
+                    <p>Your one-stop shop for premium sneakers from all the top brands.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Sneaker St, Footwear City</p>
+                    <p><i class="fas fa-phone"></i> +1 234 567 8900</p>
+                    <p><i class="fas fa-envelope"></i> info@sneakerzone.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 SneakerZone. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/checkout.js"></script>
+</body>
+</html>

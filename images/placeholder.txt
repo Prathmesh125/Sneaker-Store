@@ -1,0 +1,25 @@
+This is a placeholder file for the images directory.
+
+In a real implementation, you would need to add actual image files for:
+- hero-bg.jpg
+- running.jpg, basketball.jpg, casual.jpg, limited.jpg
+- nike-air-max-270.jpg (and variations)
+- adidas-ultraboost.jpg (and variations)
+- jordan-1.jpg (and variations)
+- puma-rsx.jpg (and variations)
+- new-balance-990.jpg (and variations)
+- vans-old-skool.jpg (and variations)
+- converse-chuck-taylor.jpg (and variations)
+- nike-lebron.jpg (and variations)
+- about-hero.jpg, about-store.jpg
+- team-1.jpg, team-2.jpg, team-3.jpg, team-4.jpg
+- brand logos (nike-logo.png, adidas-logo.png, etc.)
+- contact-hero.jpg, map.jpg
+
+For testing purposes, you can use placeholder image services like:
+- https://placeholder.com/
+- https://picsum.photos/
+
+Example usage:
+<img src="https://via.placeholder.com/300x200" alt="Placeholder">
+<img src="https://picsum.photos/300/200" alt="Random Image">
